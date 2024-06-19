@@ -7,9 +7,9 @@ export const About = () => {
 
   return (
     <div>
-      <h1>Página de Acerca de nosotros</h1>
-      <p>Datos del cliente:</p>
+      <h1>Página de Acerca de Nosotros</h1>
+      <p><strong>Datos del cliente:</strong></p>
       <pre>{JSON.stringify(objectContext.user)}</pre>
-    </div>
+  </div>
   )
 }

@@ -1,54 +1,78 @@
-import React, { useContext } from 'react';
-import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
-import { Home } from '../components/Home';
-import { Articles } from '../components/Articles';
-import { About } from '../components/About';
-import { Contact } from '../components/Contact';
-import { Login } from '../components/Login';
-import { ErrorPage } from '../components/ErrorPage';
+import React, { useContext } from 'react'
+import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom'
+import { Home } from '../components/Home'
+import { Articles } from '../components/Articles'
+import { About } from '../components/About'
+import { Contact } from '../components/Contact'
+import { Login } from '../components/Login'
+import { ErrorPage } from '../components/ErrorPage'
+import { Context } from '../context/Context'
+import logo from '../assets/Logo.png'
+import { DetailArticle } from '../components/DetailArticle'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 export const AppRouter = () => {
+  const { user, setUser } = useContext(Context);
 
   return (
     <Router>
-      {/* Navigation menu */}
+      {/* Menú de navegación */}
       <header className='header-nav'>
         <nav>
-          <div className="logo">
-            <h2>LOGO</h2>
+          <div className='logo'>
+            <img src={logo} alt="logo" className='logo-img'/>
           </div>
           <ul>
             <li>
-            <NavLink to='/'>Inicio</NavLink>
+              <NavLink to='/'>Inicio</NavLink>
             </li>
             <li>
-            <NavLink to='/articulos'>Artículos</NavLink>
+              <NavLink to='/articulos'>Artículos</NavLink>
             </li>
             <li>
-            <NavLink to='/acerca-de'>Acerca de</NavLink>
+              <NavLink to='/acerca-de'>Acerca de</NavLink>
             </li>
             <li>
-            <NavLink to='/contacto'>Contacto</NavLink>
+              <NavLink to='/contacto'>Contacto</NavLink>
             </li>
-            <li>
-            <NavLink to='/login'>Identifícate</NavLink>
-            </li>
+            {user.hasOwnProperty("username") && user.username !== null ?
+              (
+                <>
+                  <li>
+                    <NavLink to='/login'>
+                      <FontAwesomeIcon icon={faUser} /> {user.username}
+                    </NavLink>
+                  </li>
+                  <li>
+                    <a href='/' onClick={ e => {
+                      e.preventDefault();
+                      setUser({});
+                    }}>Cerrar Sesión</a>
+                  </li>
+                </>
+              ) :
+              (
+                <li><NavLink to='/login'>Identifícate</NavLink></li>
+              )
+            }
           </ul>
         </nav>
       </header>
 
       <section className='content'>
-        {/* Configure the routes */}
+        {/* Configurar las rutas */}
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/inicio' element={<Home />} />
-          <Route path='/articulos' element={<Articles />} />
-          <Route path='/acerca-de' element={<About />} />
-          <Route path='/contacto' element={<Contact />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='*' element={<ErrorPage />} />   
+          <Route path='/' element={<Home />}></Route>
+          <Route path='/inicio' element={<Home />}></Route>
+          <Route path='/articulos' element={<Articles />}></Route>
+          <Route path='/article/:id' element={<DetailArticle />}></Route>
+          <Route path='/acerca-de' element={<About />}></Route>
+          <Route path='/contacto' element={<Contact />}></Route>
+          <Route path='/login' element={<Login />}></Route>
+          <Route path='*' element={<ErrorPage />}></Route>
         </Routes>
       </section>
     </Router>
-  );
-};
+  )
+}

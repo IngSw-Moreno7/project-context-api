@@ -26,7 +26,7 @@ body {
   margin-left: 10px;
 }
 .header-nav a:hover {
-  color: rgb(27, 116, 159);
+  color: rgb(201, 160, 99);
 }
 .content {
   width: 70%;
@@ -36,5 +36,39 @@ body {
   border: 1px #416475;
   margin: 15px auto;
   padding: 30px;
-
+  box-sizing: border-box;
 }
+
+.login input[type="text"], .login input[type="submit"] {
+  display: block;
+  margin: 10px auto;  /* Ajusta los márgenes para centrar */
+  padding: 10px;
+  width: 50%;  /* Ajusta el ancho al 50% del contenedor */
+  box-sizing: border-box;
+}
+.login input[type="submit"] {
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.login input[type="submit"]:hover {
+  background-color: lightblue;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+.logo-img {
+  height: 80px; /* Ajusta el tamaño de la imagen */
+  margin-right: 10px; /* Espacio entre la imagen y el texto */
+}
+.home-container {
+  text-align: center; /* Centra el contenido horizontalmente */
+}
+.welcome-message {
+  display: inline-block; /* Opcional: si quieres que el mensaje ocupe solo el espacio necesario */
+}
+

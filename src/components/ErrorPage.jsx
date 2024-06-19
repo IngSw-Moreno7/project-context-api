@@ -8,7 +8,7 @@ export const ErrorPage = () => {
       <span>4</span>
       <span><span className="screen-reader-text">0</span></span>
       <span>4</span>
-      <h1><strong>Ocurrió un ERROR, página no encontrada</strong></h1>
+      <h1><strong>Ups!!</strong> <br />Lo sentimos, la página que estás buscando no pudo ser encontrada. <br /> Por favor, verifica la URL e intenta de nuevo.</h1>
     </section>
   );
 }
